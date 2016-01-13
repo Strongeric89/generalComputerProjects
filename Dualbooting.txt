@@ -1,0 +1,41 @@
+Clean install of Windows 7
+
+As there was already an installation on the hard disk we were instructed to do a clean install of Windows 7 so we had to remove all Partitions from the hard disk.
+We changed the boot order to the optical drive in the BIOS and used the G-parted disc to remove the Master boot record (the first 146bytes).
+1.	We used the following command in the Linux command line interface: 
+dd if=/dev/zero of=/dev /sda bs=446 count=1
+This command writes over the existing partition which allows the operating system to be completely deleted. 
+2.	 The next step we was install Windows 7 image disk. We set up a drive partition so that windows would only occupy half of the hard drive space (40GB). Which would leave an addition 40GB for the Linux Ubuntu operating System
+3.	The login and password for the windows operating system is:
+Login: ???
+Password: ???
+4.	We then installed the Windows 7 Service pack 1 and also the Asus A58m-A/us83 motherboard drivers to ensure that all ports and hardware would communicate with the Operating system.
+5.	We then changed the boot order back in the BIOS to boot with the hard disk.
+
+OVERVIEW
+Put overview of the process and mention any important information left out. Brief
+Week 9- Formatting the hard drive to dual boot both windows and Linux
+We were instructed the have a dual booting option for the operating systems at boot up.  This gives the user the option to pick between two operating systems. 
+We used the table below to set up the various file systems on the hard drive. 
+Partition	File System	Mount Points	Size	Name
+Primary	Ext 4	/	10GB	Root
+-	-	-	2 X ram size= 8GB	Share area
+Logical	Fat32	/windows	10GB	Shared
+Logical	Ext 4	/home	Remainder of HDD	home
+	
+INSTALLING LINUX
+1.	We changed the boot order in the BIOS to read in the image disk of Linux Ubuntu.
+2.	We clicked “Something else” installation which allows you to customize the installation of the file structure on the hard drive. This was so that you could access windows files while in Linux and vice versa with windows you could visit the Linux files. 
+3.	Windows 7 is already installed on the hard disk so we used the remaining unallocated space (UAC) to install Linux. We  formatted the drive as follows:
+o	Primary partition in the file system of Ext 4. We allocated 10GB. This was the root directory of the Ubuntu O/S.
+o	The next we set up a share are for the RAM space in case the ram space was all used up. This means the hard drive would write to the thrash if all ram was used up. The allocated space for this was 8GB. Twice the amount of ram that is installed in this machine.
+o	A logical Partition in the Fat32 file system.  This is so the operating system of Ubuntu can read the windows files structure and inhabit a share area of 10GB
+o	A Logical partition in the file system of Ext 4. This is so the operating system of Windows can read the Linux file structure to inhabit a share area of remaining unallocated space. 
+4.	Once the Partitions were set up on the hard disk the Operating System Ubuntu was installed and booted up. This was successful and when we booted there was a prompt to ask what operating system the user wanted to boot up. (SEE APPENDIX 6.1 and 6.2)
+
+
+5.	The login and password for the Ubuntu operating system is:
+Login: ????
+Password: ???
+
+6.	Finally we changed the boot sequence in the BIOS to hard disk as master and optical drive as slave. 
